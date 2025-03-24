@@ -13,10 +13,7 @@ class ConnexionController extends Controller
         return view("index");
     }
 
-    public function __construct()
-    {
-        $this->middleware('throttle:5,1');
-    }
+
 
     public function auth(Request $request)
     {
