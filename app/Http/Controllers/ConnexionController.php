@@ -13,31 +13,38 @@ class ConnexionController extends Controller
         return view("index");
     }
 
+    public function __construct()
+    {
+        $this->middleware('throttle:5,1');
+    }
+
     public function auth(Request $request)
     {
-        
+
         // Validate login data
         $valid = $request->validate([
             "username" => "required",
-            "password" => "required"
+            "password" => "required|min:8",
         ], [
-            "username.required" => "Le nom de l'employer est requis",
-            "password.required" => "Le mot de passe est requis."
+            "username.required" => "Le nom de l'employé est requis",
+            "password.required" => "Le mot de passe est requis.",
+            "password.min" => "Le mot de passe doit contenir au moins 8 caractères.",
         ]);
-        
 
-        // Attempt to authenticate
+
+
         if (! Auth::attempt($valid)) {
             return back()
-                ->with('error', "Les informations fournies sont invalides. Réessayez.");
+                ->with('error', "Les informations fournies sont incorrectes. Veuillez réessayer.");
         }
+
 
         // Regenerate the session to prevent attacks
         $request->session()->regenerate();
 
-        
+
         $user = Auth::user();
-      
+
         return redirect()->route("clients.index")
             ->with('success', "Bienvenue" .  $user->username);
     }

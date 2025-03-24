@@ -11,18 +11,18 @@ class MachineController extends Controller
 
     public function index(Request $request, $buildings)
     {
-        $search = $request->input('search');
+        $search = trim(strip_tags($request->input('search')));
 
         $machines = Machine::query()
-            ->where("building_id", "=", $buildings); // Filter buildings by client_id
+            ->where("building_id", "=", $buildings);
 
         if ($search) {
-            $machines->where('serie', 'LIKE', "%{$search}%"); // Apply the search filter
+            $machines->where('serie', 'LIKE', "%{$search}%");
         }
 
         return view("machines.index", [
-            "machines" => $machines->get(), // Execute the query and get the results
-            "buildings" => Building::findOrFail($buildings) // Retrieve the client or return a 404 if not found
+            "machines" => $machines->get(),
+            "buildings" => Building::findOrFail($buildings),
         ]);
     }
 
@@ -48,82 +48,44 @@ class MachineController extends Controller
         $building_id =  $valid["buildings_id"];
 
         $machine = new Machine();
-        $machine->type = $valid["type"];
-        $machine->marque = $valid["marque"];
-        $machine->modele = $valid["modele"];
-        $machine->serie = $valid["serie"];
-        $machine->courroie = $valid["courroie"];
-        $machine->filtres = $valid["filtres"];
-        $machine->freon = $valid["freon"];
-
-
-        $machine->building_id = $building_id;
-
-
-
+        $machine->fill($valid);
+        $machine->building_id = $valid['buildings_id'];
         $machine->save();
 
-        return redirect()->route("machines.index",['buildings' =>$building_id])->with("succes", "Le building a bien été créée");
+        return redirect()->route("machines.index", ['buildings' => $valid['buildings_id']])
+                         ->with("success", "La machine a bien été créée");
     }
-    public function edit($id)
+    public function edit(Machine $machine)
     {
-
-        return view("machines.edit", [
-            "machine" => Machine::findOrFail($id),
-        ]);
+        return view("machines.edit", compact('machine'));
     }
-    public function update(Request $request)
+
+    public function update(Request $request, Machine $machine)
     {
-
-
-
         $valid = $request->validate([
-            "id" => "required",
-            "type" => "required",
-            "marque" => "required",
-            "modele" => "required",
-            "serie" => "required",
-            "courroie" => "required",
-            "filtres" => "required",
-            "freon" => "required",
-
-        ], [
-            "id.required" => "Un problème est survenu",
-            "type.required" => "Le titre est requis",
-            "marque.required" => "Le titre est requis",
-            "modele.required" => "Le titre est requis",
-            "serie.required" => "Le titre est requis",
-            "courroie.required" => "Le titre est requis",
-            "filttres.required" => "Le titre est requis",
-            "freon.required" => "Le titre est requis",
+            "type" => "required|max:255",
+            "marque" => "required|max:255",
+            "modele" => "required|max:255",
+            "serie" => "required|max:255",
+            "courroie" => "required|max:255",
+            "filtres" => "required|max:255",
+            "freon" => "required|max:255",
         ]);
 
-
-        $machine = Machine::findOrFail($valid["id"]);
-        $machine->type = $valid["type"];
-        $machine->marque = $valid["marque"];
-        $machine->modele = $valid["modele"];
-        $machine->serie = $valid["serie"];
-        $machine->courroie = $valid["courroie"];
-        $machine->filtres = $valid["filtres"];
-        $machine->freon = $valid["freon"];
-
-
-
-        $machine->save();
+        $machine->update($valid);
 
         return redirect()
             ->route("machines.index", ["buildings" => $machine->building_id])
             ->with('success', "La machine a été modifiée");
     }
 
-    public function destroy(Request $request)
+    public function destroy(Machine $machine)
     {
-        $machine = Machine::findOrFail($request->id);
-        Machine::destroy($machine->id);
+        $machine->delete();
 
         return redirect()
             ->route("machines.index", ["buildings" => $machine->building_id])
-            ->with("success", "Le building a été supprimée");
+            ->with("success", "La machine a été supprimée");
     }
+
 }
