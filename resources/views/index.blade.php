@@ -8,7 +8,7 @@
                 @csrf
                 <!-- Nom de l'employé -->
                 <div class="mb-4">
-                    <label for="username" class="block text-sm font-medium text-gray-700">Nom de l'employé</label>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Prénom de l'employé</label>
                     <input type="text" id="username" name="username" required
                            class="w-full px-4 py-2 mt-2 bg-gray-100 border border-gray-300 rounded focus:outline-none focus:border-gray-500"
                            placeholder="Entrez votre nom">
