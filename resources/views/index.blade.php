@@ -1,6 +1,5 @@
 <x-layout>
     <main class="flex items-center justify-center min-h-screen bg-white  flex-col">
-        <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="400px" height="400px">
         <div class="w-full max-w-md p-8 border border-gray-300 rounded-lg shadow-lg">
             <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Connexion Employé</h2>
 
