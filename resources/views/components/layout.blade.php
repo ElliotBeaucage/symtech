@@ -13,8 +13,10 @@
     <a href="{{route("clients.index")}}">
         <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="200px" height="200px">
     </a>
-    @if (!$user)
+    @if ($user == true)
         <p>Utilisateur: {{$user->username}}</p>
+    @else
+
     @endif
 
 
