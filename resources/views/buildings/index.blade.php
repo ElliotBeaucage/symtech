@@ -31,9 +31,10 @@
 
                     </button>
                 </form>
+                <a href="{{ route('clients.index', ['id' => $client->id]) }}"
+                    class=" px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#003E7E]"
+                    style="position: relative; top: 30px;">retour</a>
 
-                <a href="{{ route('clients.index') }}"class=" px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#003E7E]"
-                    style="position: relative; top: 30px;">Retour Page d'accueil</a>
         </aside>
 
         <!-- Section de la liste de clients -->
