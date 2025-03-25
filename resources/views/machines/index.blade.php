@@ -1,5 +1,5 @@
 <x-layout>
-
+<a href="{{route("buildings.index", ["client" => $building->client_id])}}">retour</a>
     <main class="min-h-screen bg-gray-100 py-10 px-6 flex flex-col lg:flex-row lg:justify-center">
         <!-- Sidebar Formulaire d'ajout de client -->
         <aside class="w-full max-w-xs p-6 bg-white rounded-lg shadow-lg mb-8 lg:mb-0 lg:mr-8">
