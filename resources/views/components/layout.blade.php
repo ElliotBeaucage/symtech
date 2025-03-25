@@ -9,7 +9,10 @@
     <title>Symtech</title>
 </head>
 <header>
-    <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="200px" height="200px">
+    <a href="{{route("/home")}}">
+        <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="200px" height="200px">
+    </a>
+
 </header>
 <body>
     {{{$slot}}}
