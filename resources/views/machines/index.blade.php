@@ -40,7 +40,8 @@
                         Rechercher
                     </button>
                 </form>
-                <a href="{{ route('buildings.index', ['client' => $buildings->client_id]) }}">retour</a>
+                <a href="{{ route('buildings.index', ['client' => $buildings->client_id]) }}"
+                    class=" px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#003E7E]">retour</a>
                 <a href="{{ route('clients.index') }}"class=" px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#003E7E]"
                     style="position: relative; top: 30px;">Retour Page d'accueil</a>
         </aside>
