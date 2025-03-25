@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class ClientController extends Controller
 
     public function index(Request $request)
     {
+       dd(User::get());
         $search = $request->input('search');
         $clients = Client::query();
 
