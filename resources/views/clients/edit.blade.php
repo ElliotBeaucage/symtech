@@ -12,7 +12,7 @@
                     <label for="client-name" class="block text-sm font-medium text-gray-700">Nom du Client</label>
                     <input type="hidden" value="{{$client->id}}" name="id" id="id">
                     <input type="text" id="client-name" name="name" value="{{$client->name}}"
-                           class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                           class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]"
                            placeholder="Nom du client">
                 </div>
 
