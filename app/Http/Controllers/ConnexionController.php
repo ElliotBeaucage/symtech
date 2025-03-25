@@ -10,6 +10,10 @@ class ConnexionController extends Controller
     //
     public function index()
     {
+        if (auth()->check()) {
+            return redirect()->route('clients.index'); // Redirige si l'utilisateur est connecté
+        }
+
         return view("index");
     }
 

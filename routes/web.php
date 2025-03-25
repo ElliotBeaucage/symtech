@@ -7,11 +7,8 @@ use App\Http\Controllers\MachineController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get("/", [ConnexionController::class, "index"], function(){
-    if (auth()->check()) {
-        return redirect()->route('clients.index');
-    }
-})->name("connexion");
+Route::get("/", [ConnexionController::class, "index"])->name("connexion");
+
 
 Route::post('/sign-in', [ConnexionController::class, "auth"])->name("log-in");
 
