@@ -80,7 +80,7 @@ class MachineController extends Controller
         $valid = $request->validate([
             "id" => "required",
             "type" => "required",
-            "marque" => "required",
+            "marque" => "nullable",
             "modele" => "required",
             "serie" => "required",
             "courroie" => "required",
@@ -90,7 +90,6 @@ class MachineController extends Controller
         ], [
             "id.required" => "Un problème est survenu",
             "type.required" => "Le titre est requis",
-            "marque.required" => "Le titre est requis",
             "modele.required" => "Le titre est requis",
             "serie.required" => "Le titre est requis",
             "courroie.required" => "Le titre est requis",
