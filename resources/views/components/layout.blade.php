@@ -15,7 +15,7 @@
     </a>
     @if ($user == true)
         <p>Utilisateur: {{$user->username}}</p>
-    @else
+    @elseif ($user == null)
 
     @endif
 
