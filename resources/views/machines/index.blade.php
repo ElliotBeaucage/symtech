@@ -9,7 +9,7 @@
                 <input type="hidden" name="buildings_id" id="buildings_id" value="{{ $buildings->id }}">
                 <!-- Nom du client -->
                 <div class="mb-4">
-                    <input type="text" id="type" name="type" required
+                    <input type="text" id="type" name="type"
                         class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]"
                         placeholder="Type/Genre">
                     <input type="text" id="marque" name="marque" placeholder="Marque"
