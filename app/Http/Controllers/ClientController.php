@@ -11,17 +11,16 @@ class ClientController extends Controller
     //
 
     public function index(Request $request)
-{
-    $search = trim(strip_tags($request->input('search')));
-    $clients = Client::query();
+    {
+        $search = $request->input('search');
+        $clients = Client::query();
 
-    if ($search) {
-        $clients->where('name', 'LIKE', "%{$search}%");
+        if ($search) {
+            $clients->where('name', 'LIKE', "%{$search}%");
+        }
+
+        return view('clients.index', ['clients' => $clients->get()]);
     }
-
-    return view('clients.index', ['clients' => $clients->get()]);
-}
-
 
     public function store(Request $request)
     {
@@ -38,36 +37,48 @@ class ClientController extends Controller
 
         return redirect()->route("clients.index")->with("succes", "Le client a bien été créée");
     }
-    public function edit(Client $client)
-{
-    return view("clients.edit", compact("client"));
-}
+    public function edit($id)
+    {
 
-public function update(Request $request, Client $client)
-{
-    $valid = $request->validate([
-        "name" => "required|max:255",
-    ], [
-        "name.required" => "Le titre est requis",
-    ]);
+        return view("clients.edit", [
 
-    $client->update([
-        "name" => $valid["name"],
-    ]);
-
-    return redirect()
-        ->route("clients.index")
-        ->with('success', "Le client a été modifié");
-}
+            "client" => Client::findOrFail($id),
+        ]);
+    }
+    public function update(Request $request)
+    {
 
 
-public function destroy(Client $client)
-{
-    $client->delete();
 
-    return redirect()
-        ->route("clients.index")
-        ->with("success", "Le client a été supprimé");
-}
+        $valid = $request->validate([
+            "id" => "required",
+            "name" => "required",
 
+        ], [
+            "id.required" => "Un problème est survenu",
+            "name.required" => "Le titre est requis",
+        ]);
+
+
+        $client = Client::findOrFail($valid["id"]);
+        $client->name = $valid["name"];
+
+
+
+        $client->save();
+
+        return redirect()
+            ->route("clients.index")
+            ->with('success', "Le client a été modifiée");
+    }
+
+    public function destroy(Request $request)
+    {
+        $client = Client::findOrFail($request->id);
+        Client::destroy($client->id);
+
+        return redirect()
+            ->route("clients.index")
+            ->with("success", "Le client a été supprimée");
+    }
 }

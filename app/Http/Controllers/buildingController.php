@@ -9,23 +9,22 @@ use Illuminate\Http\Request;
 class buildingController extends Controller
 {
     //
-    public function index(Request $request, int $client)
+    public function index(Request $request, $client)
     {
-        $client = Client::findOrFail($client); // Ensure it's a valid client
         $search = $request->input('search');
 
-        $buildings = Building::where("client_id", $client->id);
+        $buildings = Building::query()
+            ->where("client_id", "=", $client); // Filter buildings by client_id
 
         if ($search) {
-            $buildings->where('adresse', 'LIKE', "%{$search}%");
+            $buildings->where('adresse', 'LIKE', "%{$search}%"); // Apply the search filter
         }
 
         return view("buildings.index", [
-            "buildings" => $buildings->get(),
-            "client" => $client
+            "buildings" => $buildings->get(), // Execute the query and get the results
+            "client" => Client::findOrFail($client) // Retrieve the client or return a 404 if not found
         ]);
     }
-
 
 
     public function store(Request $request)
@@ -43,20 +42,24 @@ class buildingController extends Controller
         ]);
         $client_id =  $valid["client_id"];
 
-        $building = new Building();
-        $building->adresse = $valid["name"];
-        $building->client_id = $client_id;
-        $building->save();
+        $buidling = new Building();
+        $buidling->adresse = $valid["name"];
 
+        $buidling->client_id = $client_id;
+
+
+
+        $buidling->save();
 
         return redirect()->route("buildings.index",['client' =>$client_id])->with("succes", "Le building a bien été créée");
     }
-
-    public function edit(Building $building)
+    public function edit($id)
     {
-        return view("buildings.edit", compact("building"));
-    }
 
+        return view("buildings.edit", [
+            "building" => Building::findOrFail($id),
+        ]);
+    }
     public function update(Request $request)
     {
 
@@ -83,7 +86,6 @@ class buildingController extends Controller
             ->route("buildings.index", ["client" => $building->client_id])
             ->with('success', "Le building a été modifiée");
     }
-
 
     public function destroy(Request $request)
     {
