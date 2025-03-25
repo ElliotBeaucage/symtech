@@ -8,6 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Symtech</title>
 </head>
+<header>
+    <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="400px" height="400px">
+</header>
 <body>
     {{{$slot}}}
 </body>
