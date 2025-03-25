@@ -13,7 +13,7 @@ class ClientController extends Controller
 
     public function index(Request $request)
     {
-       dd(User::get());
+       dd(auth()->user());
         $search = $request->input('search');
         $clients = Client::query();
 
