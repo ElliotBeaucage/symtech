@@ -35,14 +35,13 @@ class MachineController extends Controller
             "type" => "max:255",
             "marque" => "max:255",
             "modele" => "max:255",
-            "serie" => "required|max:255",
+            "serie" => "max:255",
             "courroie" => "max:255",
             "filtres" => "max:255",
             "freon" => "max:255",
             'buildings_id' => "required"
 
         ], [
-            "serie.required" => "Le numéro de série est requis",
             "buildings_id.required" => "oups il y a un erreur..."
         ]);
         $building_id =  $valid["buildings_id"];
