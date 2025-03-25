@@ -19,7 +19,7 @@
 
                 <div class="flex justify-between items-center mt-6">
                     <a href="{{route('clients.index')}}" class="text-gray-600 hover:text-gray-800 font-semibold">Annuler</a>
-                    <button type="submit" class="px-6 py-2 text-white bg-[#003E7E] rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button type="submit" class="px-6 py-2 text-white bg-[#003E7E] rounded hover:bg-[#003E7F] focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         Sauvegarder
                     </button>
                 </div>
