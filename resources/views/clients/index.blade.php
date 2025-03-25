@@ -38,30 +38,33 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
                 @foreach ($clients as $client)
-                    <div class="block p-6 bg-white rounded-lg shadow hover:shadow-lg transition relative h-40">
-
-                        <a href="{{ route('buildings.index',['client' => $client->id]) }}">
-                            <h2 class="text-xl font-bold text-gray-800 mb-2">{{$client->name}}</h2>
-                        </a>
+                    <a href="{{ route('buildings.index', ['client' => $client->id]) }}">
+                        <div class="block p-6 bg-white rounded-lg shadow hover:shadow-lg transition relative h-40">
 
 
+                            <h2 class="text-xl font-bold text-gray-800 mb-2">{{ $client->name }}</h2>
 
-                        <div class="mt-4 flex justify-between ">
 
-                            <a href="{{route('clients.edit', ['id' => $client->id])}}" class="text-[#003E7E] hover:text-[#003E7E] font-semibold">
-                                Modifier
-                            </a>
 
-                            <form action="{{route('clients.destroy')}}" method="POST">
-                                @csrf
-                                <input type="hidden" value="{{$client->id}}" name="id" id="id">
-                                <button type="submit" class="text-red-600 hover:text-red-800 font-semibold">
-                                    Supprimer
-                                </button>
-                            </form>
+
+                            <div class="mt-4 flex justify-between ">
+
+                                <a href="{{ route('clients.edit', ['id' => $client->id]) }}"
+                                    class="text-[#003E7E] hover:text-[#003E7E] font-semibold">
+                                    Modifier
+                                </a>
+
+                                <form action="{{ route('clients.destroy') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $client->id }}" name="id" id="id">
+                                    <button type="submit" class="text-red-600 hover:text-red-800 font-semibold">
+                                        Supprimer
+                                    </button>
+                                </form>
+                            </div>
+
                         </div>
-
-                    </div>
+                    </a>
                 @endforeach
 
             </div>
