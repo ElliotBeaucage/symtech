@@ -84,14 +84,14 @@ class buildingController extends Controller
             ->with('success', "Le building a été modifiée");
     }
 
+
     public function destroy(Request $request)
     {
         $building = Building::findOrFail($request->id);
         Building::destroy($building->id);
 
         return redirect()
-        ->route("buildings.index", ["client" => $building->client_id])
-        ->with("success", "Le building a été supprimé");
-
+            ->route("buidlings.index")
+            ->with("success", "Le building a été supprimée");
     }
 }
