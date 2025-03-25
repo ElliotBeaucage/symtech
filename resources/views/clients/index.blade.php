@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :user="auth()->user()">
     <main class="min-h-screen bg-gray-100 py-10 px-6 flex flex-col lg:flex-row lg:justify-center">
 
         <aside class="w-full max-w-xs p-6 bg-white rounded-lg shadow-lg mb-8 lg:mb-0 lg:mr-8 mx-auto">

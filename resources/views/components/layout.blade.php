@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Symtech</title>
 </head>
+@props(["user"])
 <header>
     <a href="{{route("clients.index")}}">
         <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="200px" height="200px">
