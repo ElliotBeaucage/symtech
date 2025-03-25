@@ -1,5 +1,5 @@
 <x-layout>
-<a href="{{route("buildings.index", ["client" => $buildings->client_id])}}">retour</a>
+
     <main class="min-h-screen bg-gray-100 py-10 px-6 flex flex-col lg:flex-row lg:justify-center">
         <!-- Sidebar Formulaire d'ajout de client -->
         <aside class="w-full max-w-xs p-6 bg-white rounded-lg shadow-lg mb-8 lg:mb-0 lg:mr-8">
@@ -40,8 +40,8 @@
                         Rechercher
                     </button>
                 </form>
-               <a
-                    href="{{ route('clients.index') }}"class=" px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#003E7E]"
+                <a href="{{ route('buildings.index', ['client' => $buildings->client_id]) }}">retour</a>
+                <a href="{{ route('clients.index') }}"class=" px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#003E7E]"
                     style="position: relative; top: 30px;">Retour Page d'accueil</a>
         </aside>
 
