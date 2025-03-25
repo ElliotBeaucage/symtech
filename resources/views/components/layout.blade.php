@@ -9,7 +9,7 @@
     <title>Symtech</title>
 </head>
 <header>
-    <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="400px" height="400px">
+    <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="200px" height="200px">
 </header>
 <body>
     {{{$slot}}}
