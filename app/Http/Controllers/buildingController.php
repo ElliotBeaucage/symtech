@@ -93,7 +93,7 @@ class buildingController extends Controller
         Building::destroy($building->id);
 
         return redirect()
-            ->route("buidlings.index")
+            ->route("buildings.index")
             ->with("success", "Le building a été supprimée");
     }
 }
