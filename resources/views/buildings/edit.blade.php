@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :user="null">
 
     <main class="min-h-screen bg-gray-100 flex items-center justify-center py-10 px-4">
         <div class="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg">
