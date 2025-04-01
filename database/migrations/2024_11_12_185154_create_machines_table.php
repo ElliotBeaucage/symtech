@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("courroie");
             $table->string("filtres");
             $table->string("freon");
+            $table->string("description");
             $table->foreignId('building_id')
                 ->constrained()
                 ->cascadeOnDelete();
