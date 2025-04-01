@@ -74,26 +74,24 @@ class MachineController extends Controller
     public function update(Request $request)
     {
 
-
-
         $valid = $request->validate([
             "id" => "required",
-            "type" => "required",
-            "marque" => "nullable",
-            "modele" => "required",
-            "serie" => "required",
-            "courroie" => "required",
-            "filtres" => "required",
-            "freon" => "required",
+            "type" => "max:255",
+            "marque" => "max:255",
+            "modele" => "max:255",
+            "serie" => "max:255",
+            "courroie" => "max:255",
+            "filtres" => "max:255",
+            "freon" => "max:255",
 
         ], [
             "id.required" => "Un problème est survenu",
-            "type.required" => "Le titre est requis",
-            "modele.required" => "Le titre est requis",
-            "serie.required" => "Le titre est requis",
-            "courroie.required" => "Le titre est requis",
-            "filttres.required" => "Le titre est requis",
-            "freon.required" => "Le titre est requis",
+            "type.max" => "Il y a tros de caractère",
+            "modele.max" => "Il y a tros de caractère",
+            "serie.max" => "Il y a tros de caractère",
+            "courroie.max" => "Il y a tros de caractère",
+            "filttres.max" => "Il y a tros de caractère",
+            "freon.max" => "Il y a tros de caractère",
         ]);
 
 
