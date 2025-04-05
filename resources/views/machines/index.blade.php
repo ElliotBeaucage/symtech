@@ -2,7 +2,7 @@
 
     <main class="min-h-screen bg-gray-100 py-10 px-6 flex flex-col lg:flex-row lg:justify-center">
         <!-- Sidebar Formulaire d'ajout de client -->
-        <aside class="w-full max-w-xs p-6 bg-white rounded-lg shadow-lg mb-8 lg:mb-0 lg:mr-8">
+        <aside class="w-full max-w-xs p-6 bg-white rounded-lg shadow-lg mb-8 lg:mb-0 lg:mr-8 " >
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Ajouter une Machine</h2>
             <form action="{{ route('machines.store') }}" method="POST">
                 @csrf
