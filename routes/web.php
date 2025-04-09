@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\SignatureController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -45,4 +46,6 @@ Route::post("/machine-update", [MachineController::class, "update"])->name("mach
 Route::post("/machine-destroy", [MachineController::class, "destroy"])->name("machines.destroy")->middleware("Auth");
 
 Route::post("/image-store", [ImageController::class, "store"])->name("images.store")->middleware("Auth");
+Route::get('/signature', [SignatureController::class, 'create']);
+Route::post('/signature', [SignatureController::class, 'store'])->name('signature.store');
 
