@@ -83,7 +83,7 @@
 <body>
     <div class="header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
         <div style="flex: 0 0 auto;">
-            <img src="{{ public_path('storage/logo.png') }}" alt="Logo Symtech" style="height: 60px;">
+            <img src="{{ public_path('storage/logo.png') }}" style="height: 60px;" alt="Logo Symtech">
         </div>
         <div style="flex: 1; text-align: center;">
             <h1>Symtech Climatisation inc.</h1>
