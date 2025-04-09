@@ -1,15 +1,14 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Models\Signature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class SignatureController extends Controller
 {
-    public function create()
-    {
-        return view('signatures.create');
-    }
+
 
     public function store(Request $request)
     {
