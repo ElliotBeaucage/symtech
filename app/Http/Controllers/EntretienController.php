@@ -71,6 +71,7 @@ class EntretienController extends Controller
         // Sauvegarde en base
         Entretien::create(array_merge($booleans, [
             'building_id' => $request->building_id,
+            'description' => $request->description,
             'image' => "signatures/{$imageName}",
         ]));
 
@@ -107,7 +108,14 @@ public function update(Request $request, $id)
         $booleans[$field] = $request->has($field);
     }
 
-    $entretien->update($booleans);
+    $entretien->update($booleans, [
+        $entretien->update([
+            'description' => $request->description,
+
+
+        ])
+
+    ]);
 
     return redirect()->route('entretien.index', ['buildings' => $entretien->building_id])
         ->with('success', 'Entretien mis à jour !');

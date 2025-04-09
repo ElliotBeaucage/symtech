@@ -33,6 +33,12 @@
                         {{ $label }}
                     </label>
                 @endforeach
+                <div class="mb-4">
+                    <label for="description" class="block text-gray-700 font-medium">Description du travail</label>
+                    <textarea name="description" id="description"
+                              class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#003E7E]"
+                              rows="4">{{ old('description', $entretien->description ?? '') }}</textarea>
+                </div>
 
                 {{-- Signature --}}
                 <div>
@@ -45,6 +51,7 @@
                         <button type="button" onclick="clearSignature()" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Effacer</button>
                     </div>
                 </div>
+
 
                 {{-- Soumettre --}}
                 <div class="text-right">

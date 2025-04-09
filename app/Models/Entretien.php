@@ -11,6 +11,7 @@ class Entretien extends Model
         'f1', 'v1', 'v2', 'v3', 'v4', 'v5',
         'image',
         'building_id',
+        'description',
     ];
     public function building()
 {

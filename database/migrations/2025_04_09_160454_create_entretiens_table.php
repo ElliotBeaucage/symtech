@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean('v3')->default(false);
             $table->boolean('v4')->default(false);
             $table->boolean('v5')->default(false);
+            $table->string('description')->nullable();
             $table->string('image'); // Chemin de la signature (image)
             $table->foreignId('building_id')
             ->constrained()
