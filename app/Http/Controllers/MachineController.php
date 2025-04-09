@@ -17,7 +17,7 @@ class MachineController extends Controller
             ->where("building_id", "=", $buildings); // Filter buildings by client_id
 
         if ($search) {
-            $machines->where('serie', 'LIKE', "%{$search}%"); // Apply the search filter
+            $machines->where('nom', 'LIKE', "%{$search}%"); // Apply the search filter
         }
 
         return view("machines.index", [
@@ -32,6 +32,7 @@ class MachineController extends Controller
 
         $valid = $request->validate([
 
+            "nom" => "max:255",
             "type" => "max:255",
             "marque" => "max:255",
             "modele" => "max:255",
@@ -39,6 +40,7 @@ class MachineController extends Controller
             "courroie" => "max:255",
             "filtres" => "max:255",
             "freon" => "max:255",
+            "desc" => "",
             'buildings_id' => "required"
 
         ], [
@@ -47,6 +49,7 @@ class MachineController extends Controller
         $building_id =  $valid["buildings_id"];
 
         $machine = new Machine();
+        $machine->nom = $valid["nom"];
         $machine->type = $valid["type"];
         $machine->marque = $valid["marque"];
         $machine->modele = $valid["modele"];
@@ -54,6 +57,7 @@ class MachineController extends Controller
         $machine->courroie = $valid["courroie"];
         $machine->filtres = $valid["filtres"];
         $machine->freon = $valid["freon"];
+        $machine->description = $valid["desc"];
 
 
         $machine->building_id = $building_id;
@@ -76,6 +80,7 @@ class MachineController extends Controller
 
         $valid = $request->validate([
             "id" => "required",
+            "nom" => "max:255",
             "type" => "max:255",
             "marque" => "max:255",
             "modele" => "max:255",
@@ -83,6 +88,7 @@ class MachineController extends Controller
             "courroie" => "max:255",
             "filtres" => "max:255",
             "freon" => "max:255",
+            "desc" => "",
 
         ], [
             "id.required" => "Un problème est survenu",
@@ -96,6 +102,7 @@ class MachineController extends Controller
 
 
         $machine = Machine::findOrFail($valid["id"]);
+        $machine->nom = $valid["nom"];
         $machine->type = $valid["type"];
         $machine->marque = $valid["marque"];
         $machine->modele = $valid["modele"];
@@ -103,6 +110,7 @@ class MachineController extends Controller
         $machine->courroie = $valid["courroie"];
         $machine->filtres = $valid["filtres"];
         $machine->freon = $valid["freon"];
+        $machine->description = $valid["desc"];
 
 
 

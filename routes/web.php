@@ -4,6 +4,7 @@ use App\Http\Controllers\buildingController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\MachineController;
+use App\Http\Controllers\ImageController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -42,4 +43,6 @@ Route::get("/machine-edit/{id}", [MachineController::class, "edit"])->name("mach
 Route::post("/machine-update", [MachineController::class, "update"])->name("machines.update")->middleware("Auth");
 
 Route::post("/machine-destroy", [MachineController::class, "destroy"])->name("machines.destroy")->middleware("Auth");
+
+Route::post("/image-store", [ImageController::class, "store"])->name("images.store")->middleware("Auth");
 

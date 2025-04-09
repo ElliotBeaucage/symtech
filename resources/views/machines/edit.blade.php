@@ -9,8 +9,12 @@
 
 
                 <div class="mb-4">
-                    <label for="buildings-adresse" class="block text-sm font-medium text-gray-700">Type/genre</label>
+                    <label for="buildings-adresse" class="block text-sm font-medium text-gray-700">Nom de la machine</label>
                     <input type="hidden" value="{{$machine->id}}" name="id" id="id">
+                    <input type="text" id="nom" name="nom" value="{{$machine->nom}}"
+                           class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                           placeholder="Nom de la machine">
+                           <label for="buildings-adresse" class="block text-sm font-medium text-gray-700">Type/genre</label>
                     <input type="text" id="type" name="type" value="{{$machine->type}}"
                            class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
                            placeholder="type/genre">
@@ -38,6 +42,10 @@
                     <input type="text" id="freon" name="freon" value="{{$machine->freon}}"
                            class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
                            placeholder="Freon">
+                           <label for="buildings-adresse" class="block text-sm font-medium text-gray-700">Recommandation</label>
+                    <textarea  id="desc" name="desc"
+                           class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                           placeholder="Recommandation">{{$machine->description}}</textarea>
                 </div>
 
 

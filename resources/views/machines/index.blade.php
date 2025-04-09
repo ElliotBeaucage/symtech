@@ -1,6 +1,8 @@
 <x-layout :user="auth()->user()">
 
     <main class="min-h-screen bg-gray-100 py-10 px-6 flex flex-col lg:flex-row lg:justify-center">
+
+
         <!-- Sidebar Formulaire d'ajout de client -->
         <aside class="w-full max-w-xs p-6 bg-white rounded-lg shadow-lg mb-8 lg:mb-0 lg:mr-8 " >
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Ajouter une Machine</h2>
@@ -9,6 +11,9 @@
                 <input type="hidden" name="buildings_id" id="buildings_id" value="{{ $buildings->id }}">
                 <!-- Nom du client -->
                 <div class="mb-4">
+                    <input type="text" id="nom" name="nom"
+                        class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]"
+                        placeholder="Nom de la machine">
                     <input type="text" id="type" name="type"
                         class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]"
                         placeholder="Type/Genre">
@@ -24,6 +29,9 @@
                         class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]">
                     <input type="text" id="freon" name="freon" placeholder="Freon"
                         class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]">
+                    <textarea  id="desc" name="desc" placeholder="Recommandation"
+                        class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E] h-20"></textarea>
+
                 </div>
                 <!-- Bouton de soumission -->
                 <button type="submit"
@@ -40,6 +48,14 @@
                         Rechercher
                     </button>
                 </form>
+                <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <input type="file" name="images[]" multiple class="w-full border p-2 rounded mb-4">
+
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Ajouter</button>
+                </form>
+
                 <a href="{{ route('buildings.index', ['client' => $buildings->client_id]) }}"
                     class=" px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#003E7E]" style="position: relative; top: 30px;">retour</a>
 
@@ -56,6 +72,10 @@
                     <div class="block p-6 bg-white rounded-lg shadow ">
 
 
+                        <div class="flex gap-2">
+                            <h3 class="font-bold">Nom de la machine: </h3>
+                            <p> {{ $machine->nom }}</p>
+                        </div>
                         <div class="flex gap-2">
                             <h4 class="font-bold">Type/Genre: </h4>
                             <p> {{ $machine->type }}</p>
@@ -83,6 +103,11 @@
                         <div class="flex gap-2">
                             <h4 class="font-bold">Freon:</h4>
                             <p>{{ $machine->freon }}</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <h4 class="font-bold">Recommandation:</h4>
+
+                            <p>{{ $machine->description }}</p>
                         </div>
 
 

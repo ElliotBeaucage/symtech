@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->id();
-            $table->string("nom");
-            $table->string("type");
-            $table->string("marque");
-            $table->string("modele");
-            $table->string("serie");
-            $table->string("courroie");
-            $table->string("filtres");
-            $table->string("freon");
-            $table->string("description");
+            $table->string("nom")->nullable();
+            $table->string("type")->nullable();
+            $table->string("marque")->nullable();
+            $table->string("modele")->nullable();
+            $table->string("serie")->nullable();
+            $table->string("courroie")->nullable();
+            $table->string("filtres")->nullable();
+            $table->string("freon")->nullable();
+            $table->string("description")->nullable();
             $table->foreignId('building_id')
                 ->constrained()
                 ->cascadeOnDelete();
