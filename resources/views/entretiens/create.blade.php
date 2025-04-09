@@ -3,13 +3,13 @@
         <div class="w-full max-w-xl bg-white p-6 rounded-lg shadow-lg space-y-6">
             <h2 class="text-2xl font-bold text-gray-800">Ajouter un entretien</h2>
 
-            {{-- Upload d'images --}}
+            {{-- Upload d'images
             <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
                 <label class="block text-gray-700 font-medium">Photos associées :</label>
                 <input type="file" name="images[]" multiple class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]">
                 <button type="submit" class="w-full bg-[#003E7E] text-white py-2 rounded hover:bg-[#002b59]">Ajouter les images</button>
-            </form>
+            </form> --}}
 
             {{-- Formulaire d'entretien --}}
             <form method="POST" action="{{ route('entretien.store') }}" onsubmit="saveSignature()" class="space-y-4">
