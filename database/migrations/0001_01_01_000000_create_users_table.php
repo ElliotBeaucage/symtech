@@ -34,8 +34,26 @@ return new class extends Migration
             $table->integer('last_activity')->index();
         });
         DB::table('users')->insert([
-            'username' => 'Elliot Beaucage',
-            'password' => Hash::make('!Mvohsec4554'),
+            'username' => 'elliot',
+            'password' => Hash::make('12345'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('users')->insert([
+            'username' => 'patrick',
+            'password' => Hash::make('patrick04'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('users')->insert([
+            'username' => 'gabriel',
+            'password' => Hash::make('gabriel04'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('users')->insert([
+            'username' => 'yanick',
+            'password' => Hash::make('samuel04'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
