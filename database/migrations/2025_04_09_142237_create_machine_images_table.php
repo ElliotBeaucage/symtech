@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('machine_images', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+
             $table->timestamps();
         });
     }

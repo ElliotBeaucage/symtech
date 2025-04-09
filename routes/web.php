@@ -6,6 +6,7 @@ use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SignatureController;
+use App\Http\Controllers\EntretienController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,15 @@ Route::post("/machine-update", [MachineController::class, "update"])->name("mach
 Route::post("/machine-destroy", [MachineController::class, "destroy"])->name("machines.destroy")->middleware("Auth");
 
 Route::post("/image-store", [ImageController::class, "store"])->name("images.store")->middleware("Auth");
-Route::get('/signature', [SignatureController::class, 'create']);
-Route::post('/signature', [SignatureController::class, 'store'])->name('signature.store');
+
+
+Route::get("/{buildings}/entretiens", [EntretienController::class, "index"])->name("entretien.index")->middleware("Auth");
+Route::get("/{buildings}/create", [EntretienController::class, "create"])->name("entretien.create")->middleware("Auth");
+Route::post('/signature', [EntretienController::class, 'store'])->name('entretien.store')->middleware("Auth");
+
+
+Route::get('/{buildings}/entretiens/edit', [EntretienController::class, 'edit'])->name('entretiens.edit');
+Route::put('/{buildings}/entretiens', [EntretienController::class, 'update'])->name('entretiens.update');
+Route::delete('/{buildings}/entretiens', [EntretienController::class, 'destroy'])->name('entretiens.destroy');
+
 

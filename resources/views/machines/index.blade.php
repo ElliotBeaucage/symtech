@@ -48,31 +48,8 @@
                         Rechercher
                     </button>
                 </form>
-                <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
 
-                    <input type="file" name="images[]" multiple class="w-full border p-2 rounded mb-4">
 
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Ajouter</button>
-                </form>
-                <form method="POST" action="{{ route('signature.store') }}" onsubmit="saveSignature()">
-                    @csrf
-
-                    <label class="block mb-2">Nom :</label>
-                    <input type="text" name="name" class="w-full p-2 rounded bg-gray-700 border border-gray-600 mb-4" required>
-
-                    <label class="block mb-2">Signature :</label>
-                    <div class="bg-white rounded mb-4">
-                        <canvas id="signature-pad" class="w-full h-64"></canvas>
-                    </div>
-
-                    <input type="hidden" name="signature" id="signature-data">
-
-                    <div class="flex justify-between">
-                        <button type="button" onclick="clearSignature()" class="bg-red-500 px-4 py-2 rounded">Effacer</button>
-                        <button type="submit" class="bg-blue-600 px-4 py-2 rounded">Envoyer</button>
-                    </div>
-                </form>
 
                 <a href="{{ route('buildings.index', ['client' => $buildings->client_id]) }}"
                     class=" px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#003E7E]" style="position: relative; top: 30px;">retour</a>
@@ -154,31 +131,6 @@
 
 
 
-    <script>
-        const canvas = document.getElementById('signature-pad');
-        const signaturePad = new SignaturePad(canvas);
 
-        function resizeCanvas() {
-            const ratio = Math.max(window.devicePixelRatio || 1, 1);
-            canvas.width = canvas.offsetWidth * ratio;
-            canvas.height = canvas.offsetHeight * ratio;
-            canvas.getContext("2d").scale(ratio, ratio);
-            signaturePad.clear();
-        }
-
-        window.addEventListener("resize", resizeCanvas);
-        resizeCanvas();
-
-        function clearSignature() {
-            signaturePad.clear();
-        }
-
-        function saveSignature() {
-            if (!signaturePad.isEmpty()) {
-                const dataURL = signaturePad.toDataURL();
-                document.getElementById('signature-data').value = dataURL;
-            }
-        }
-    </script>
 
 </x-layout>

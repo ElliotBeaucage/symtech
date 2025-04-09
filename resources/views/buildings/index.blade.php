@@ -58,13 +58,16 @@
                                 Modifier
                             </a>
 
-                            <form action="{{ route('buildings.destroy') }}" method="POST">
+                            <form action="{{ route('buildings.destroy') }}" method="POST" onsubmit="return confirm('Supprimer cet entretien ?')">
                                 @csrf
                                 <input type="hidden" value="{{ $building->id }}" name="id" id="id">
                                 <button type="submit" class="text-red-600 hover:text-red-800 font-semibold">
                                     Supprimer
                                 </button>
                             </form>
+                            <a href="{{route('entretien.index', ['buildings' => $building->id])}}"class="text-[#003E7E] hover:text-[#003E7E] font-semibold">
+                                Rapport d'entretien
+                            </a>
                         </div>
                     </div>
                 @endforeach
