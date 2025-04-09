@@ -71,6 +71,10 @@
                                class="text-[#003E7E] hover:underline font-semibold">
                                 Modifier
                             </a>
+                            <a href="{{ route('entretien.pdf', $e->id) }}"
+                                class="text-green-700 hover:underline font-semibold">
+                                 Télécharger PDF
+                             </a>
 
                             <form action="{{ route('entretiens.destroy', $e->id) }}" method="POST"
                                   onsubmit="return confirm('Supprimer cet entretien ?')">

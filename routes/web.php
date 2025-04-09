@@ -7,6 +7,7 @@ use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SignatureController;
 use App\Http\Controllers\EntretienController;
+use App\Http\Controllers\EntretienPdfController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -57,5 +58,9 @@ Route::post('/signature', [EntretienController::class, 'store'])->name('entretie
 Route::get('/{buildings}/entretiens/edit', [EntretienController::class, 'edit'])->name('entretiens.edit');
 Route::put('/{buildings}/entretiens', [EntretienController::class, 'update'])->name('entretiens.update');
 Route::delete('/{buildings}/entretiens', [EntretienController::class, 'destroy'])->name('entretiens.destroy');
+
+
+Route::get('/entretiens/{id}/pdf', [EntretienPdfController::class, 'generate'])->name('entretien.pdf');
+
 
 
