@@ -1,4 +1,15 @@
 <x-layout :user="auth()->user()">
+    @if (session('success'))
+    <div class="mb-4 px-4 py-3 rounded bg-green-100 text-green-800 border border-green-200 shadow text-sm">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="mb-4 px-4 py-3 rounded bg-red-100 text-red-800 border border-red-200 shadow text-sm">
+        {{ session('error') }}
+    </div>
+@endif
     <main class="min-h-screen bg-gray-100 py-10">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex flex-col lg:flex-row lg:space-x-8">

@@ -21,6 +21,11 @@
                            placeholder="Entrez votre mot de passe">
                 </div>
 
+                <label class="flex items-center gap-2 mt-4">
+                    <input type="checkbox" name="remember" class="form-checkbox text-[#003E7E]">
+                    <span class="text-sm text-gray-600">Se souvenir de moi</span>
+                </label>
+
                 <!-- Bouton de soumission -->
                 <input type="submit" value="Connexion" class="w-full px-4 py-2 text-white bg-[#003E7E] rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
