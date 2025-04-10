@@ -27,47 +27,52 @@ class MachineController extends Controller
     }
 
     public function store(Request $request)
-    {
+{
+    $valid = $request->validate([
+        "nom" => "max:255",
+        "type" => "max:255",
+        "marque" => "max:255",
+        "modele" => "max:255",
+        "serie" => "max:255",
+        "courroie" => "max:255",
+        "filtres" => "max:255",
+        "freon" => "max:255",
+        "desc" => "nullable|string",
+        "image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
+        "buildings_id" => "required"
+    ], [
+        "buildings_id.required" => "Oups, il y a une erreur..."
+    ]);
 
+    $building_id = $valid["buildings_id"];
 
-        $valid = $request->validate([
-
-            "nom" => "max:255",
-            "type" => "max:255",
-            "marque" => "max:255",
-            "modele" => "max:255",
-            "serie" => "max:255",
-            "courroie" => "max:255",
-            "filtres" => "max:255",
-            "freon" => "max:255",
-            "desc" => "",
-            'buildings_id' => "required"
-
-        ], [
-            "buildings_id.required" => "oups il y a un erreur..."
-        ]);
-        $building_id =  $valid["buildings_id"];
-
-        $machine = new Machine();
-        $machine->nom = $valid["nom"];
-        $machine->type = $valid["type"];
-        $machine->marque = $valid["marque"];
-        $machine->modele = $valid["modele"];
-        $machine->serie = $valid["serie"];
-        $machine->courroie = $valid["courroie"];
-        $machine->filtres = $valid["filtres"];
-        $machine->freon = $valid["freon"];
-        $machine->description = $valid["desc"];
-
-
-        $machine->building_id = $building_id;
+    $machine = new Machine();
+    $machine->nom = $valid["nom"];
+    $machine->type = $valid["type"];
+    $machine->marque = $valid["marque"];
+    $machine->modele = $valid["modele"];
+    $machine->serie = $valid["serie"];
+    $machine->courroie = $valid["courroie"];
+    $machine->filtres = $valid["filtres"];
+    $machine->freon = $valid["freon"];
+    $machine->description = $valid["desc"];
+    $machine->building_id = $building_id;
 
 
 
-        $machine->save();
 
-        return redirect()->route("machines.index",['buildings' =>$building_id])->with("succes", "Le building a bien été créée");
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        $machine->image = $request->file('image')->store('machines', 'public');
     }
+
+
+    $machine->save();
+
+    return redirect()
+        ->route("machines.index", ['buildings' => $building_id])
+        ->with("succes", "La machine a bien été créée");
+}
+
     public function edit($id)
     {
 

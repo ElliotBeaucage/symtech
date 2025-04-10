@@ -8,6 +8,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SignatureController;
 use App\Http\Controllers\EntretienController;
 use App\Http\Controllers\EntretienPdfController;
+use App\Http\Controllers\MachineImageController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,17 @@ Route::delete('/{buildings}/entretiens', [EntretienController::class, 'destroy']
 
 
 Route::get('/entretiens/{id}/pdf', [EntretienPdfController::class, 'generate'])->name('entretien.pdf');
+
+
+// Voir les images
+Route::get('/machines/{id}/images', [MachineImageController::class, 'index'])->name('machines.images');
+
+// Ajouter une image
+Route::post('/machines/{id}/images', [MachineImageController::class, 'store'])->name('machines.images.store');
+
+// Supprimer une image
+Route::delete('/machine-images/{id}', [MachineImageController::class, 'destroy'])->name('machines.images.destroy');
+
 
 
 

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Machine extends Model
 {
     //
+    protected $fillable = ['nom', 'type', 'marque', 'modele', 'serie', 'courroie', 'filtres', 'freon', 'description', 'buildings_id', 'image'];
+
     public function filtre() {
         return $this->hasMany(filtre::class);
     }

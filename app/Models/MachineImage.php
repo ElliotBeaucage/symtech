@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class MachineImage extends Model
 {
-    public function entretien()
-    {
-        return $this->belongsTo(Entretien::class);
-    }
+    protected $fillable = ['machine_id', 'image_path'];
 
+    public function machine()
+    {
+        return $this->belongsTo(Machine::class);
+    }
 }

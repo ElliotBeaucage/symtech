@@ -9,15 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('machine_images', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-
+            $table->foreignId('machine_id')->constrained()->onDelete('cascade');
+            $table->string('image_path');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
