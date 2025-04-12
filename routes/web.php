@@ -10,6 +10,7 @@ use App\Http\Controllers\EntretienController;
 use App\Http\Controllers\EntretienPdfController;
 use App\Http\Controllers\MachineImageController;
 
+
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [ConnexionController::class, "index"])->name("connexion");
@@ -72,6 +73,9 @@ Route::post('/machines/{id}/images', [MachineImageController::class, 'store'])->
 
 // Supprimer une image
 Route::delete('/machine-images/{id}', [MachineImageController::class, 'destroy'])->name('machines.images.destroy');
+
+Route::delete('/entretien-images/{id}', [EntretienImageController::class, 'destroy'])->name('entretien.images.destroy');
+
 
 
 

@@ -7,14 +7,14 @@
                 <aside class="w-full lg:max-w-sm bg-white p-6 rounded-lg shadow mb-8 lg:mb-0">
                     <form action="{{ route('entretien.create', ['buildings' => $buildings->id]) }}" method="GET">
                         <button type="submit"
-                                class="w-full px-4 py-2 text-white bg-[#003E7E] rounded hover:bg-[#002b59] transition focus:outline-none focus:ring-2 focus:ring-[#003E7E]">
+                            class="w-full px-4 py-2 text-white bg-[#003E7E] rounded hover:bg-[#002b59] transition focus:outline-none focus:ring-2 focus:ring-[#003E7E]">
                             Ajouter un entretien
                         </button>
                     </form>
 
                     <div class="mt-6">
                         <a href="{{ route('buildings.index', ['client' => $buildings->client_id]) }}"
-                           class="block text-center px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#002b59] transition">
+                            class="block text-center px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#002b59] transition">
                             Retour aux bâtiments
                         </a>
                     </div>
@@ -41,6 +41,9 @@
                                 'v3' => 'Vérification des contrôles de protection du système',
                                 'v4' => 'Vérification et lubrification des moteurs et roulements à billes',
                                 'v5' => 'Nettoyage de la panne et du drain de condensation',
+                                'v6' => 'Vérification et remplacement des filtres d’air',
+                                'v7' => 'Vérification du système de refroidissement',
+                                'v8' => 'Vérification de l’étanchéité des conduits',
                             ];
                         @endphp
 
@@ -48,7 +51,6 @@
                             <div class="bg-white p-6 rounded-lg shadow flex flex-col justify-between h-full">
                                 <p class="text-sm text-gray-500 mb-3">
                                     Date : {{ $e->created_at->timezone('America/Toronto')->format('d/m/Y à H:i') }}
-
                                 </p>
 
                                 <ul class="grid grid-cols-2 gap-2 text-sm mb-4">
@@ -70,22 +72,50 @@
                                 <div class="mb-4">
                                     <p class="text-sm font-semibold text-gray-700 mb-1">Signature :</p>
                                     <img src="{{ asset('storage/' . $e->image) }}" alt="Signature"
-                                         class="w-full h-auto border border-gray-300 rounded">
+                                        class="w-full h-auto border border-gray-300 rounded">
                                 </div>
+
+                                {{-- Images liées à l'entretien --}}
+                                @if ($e->images && $e->images->count())
+                                    <div x-data="{ open: false, imageUrl: '' }" class="mt-4">
+                                        <p class="text-sm font-semibold text-gray-700 mb-1">Photos :</p>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            @foreach ($e->images as $img)
+                                                <img src="{{ asset('storage/' . $img->image_path) }}"
+                                                    class="h-24 w-full object-cover rounded cursor-pointer hover:scale-105 transition"
+                                                    @click="open = true; imageUrl = '{{ asset('storage/' . $img->image_path) }}'">
+                                            @endforeach
+                                        </div>
+
+                                        {{-- Modal fullscreen --}}
+                                        <div x-show="open" x-transition @click.away="open = false"
+                                            class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
+                                            <div class="max-w-4xl w-full p-4">
+                                                <img :src="imageUrl"
+                                                    class="mx-auto rounded-lg shadow-lg max-h-[90vh]">
+                                                <button @click="open = false"
+                                                    class="mt-4 block mx-auto px-4 py-2 bg-white text-black rounded hover:bg-gray-200">
+                                                    Fermer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
 
                                 <div class="flex flex-wrap justify-between items-center gap-2 text-sm">
                                     <a href="{{ route('entretiens.edit', $e->id) }}"
-                                       class="text-[#003E7E] hover:underline font-medium whitespace-nowrap">Modifier</a>
+                                        class="text-[#003E7E] hover:underline font-medium whitespace-nowrap">Modifier</a>
 
                                     <a href="{{ route('entretien.pdf', $e->id) }}"
-                                       class="text-green-700 hover:underline font-medium whitespace-nowrap">Télécharger PDF</a>
+                                        class="text-green-700 hover:underline font-medium whitespace-nowrap">Télécharger
+                                        PDF</a>
 
                                     <form action="{{ route('entretiens.destroy', $e->id) }}" method="POST"
-                                          onsubmit="return confirm('Supprimer cet entretien ?')">
+                                        onsubmit="return confirm('Supprimer cet entretien ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                                class="text-red-600 hover:underline font-medium whitespace-nowrap">
+                                            class="text-red-600 hover:underline font-medium whitespace-nowrap">
                                             Supprimer
                                         </button>
                                     </form>
@@ -112,7 +142,7 @@
                             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 @foreach ($images as $image)
                                     <img src="{{ asset('storage/' . $image->image) }}" alt="Photo entretien"
-                                         class="w-full h-auto border border-gray-300 rounded">
+                                        class="w-full h-auto border border-gray-300 rounded">
                                 @endforeach
                             </div>
                         </div>

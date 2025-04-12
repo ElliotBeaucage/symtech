@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Building;
 use App\Models\Entretien;
 use App\Models\MachineImage;
+use App\Models\EntretienImage;
+
 
 use Illuminate\Support\Facades\Storage;
 
@@ -48,8 +50,12 @@ class EntretienController extends Controller
             'v3' => 'nullable',
             'v4' => 'nullable',
             'v5' => 'nullable',
+            'v6' => 'nullable',
+            'v7' => 'nullable',
+            'v8' => 'nullable',
             'building_id' => 'required|exists:buildings,id',
             'signature' => 'required|string',
+            'images.*' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
         ]);
 
         // Traitement de la signature
@@ -61,28 +67,41 @@ class EntretienController extends Controller
         Storage::disk('public')->put("signatures/{$imageName}", base64_decode($image));
 
         // Booléens
-        $fields = ['f1', 'v1', 'v2', 'v3', 'v4', 'v5'];
+        $fields = ['f1', 'v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8'];
         $booleans = [];
 
         foreach ($fields as $field) {
             $booleans[$field] = $request->has($field); // true/false
         }
 
-        // Sauvegarde en base
-        Entretien::create(array_merge($booleans, [
+        // Création de l'entretien
+        $entretien = Entretien::create(array_merge($booleans, [
             'building_id' => $request->building_id,
             'description' => $request->description,
             'image' => "signatures/{$imageName}",
         ]));
 
-
+        // Enregistrement des images si présentes
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $img) {
+                if ($img->isValid()) {
+                    $path = $img->store('entretiens', 'public');
+                    EntretienImage::create([
+                        'entretien_id' => $entretien->id,
+                        'image_path' => $path,
+                    ]);
+                }
+            }
+        }
 
         return redirect()->route('entretien.index', ['buildings' => $request->building_id])
-        ->with('success', 'Entretien enregistré !');
+            ->with('success', 'Entretien enregistré !');
     }
+
+
     public function edit($id)
 {
-    $entretien = Entretien::findOrFail($id);
+    $entretien = Entretien::with('images')->findOrFail($id);
     $building = $entretien->building;
 
     return view('entretiens.edit', compact('entretien', 'building'));
@@ -99,35 +118,43 @@ public function update(Request $request, $id)
         'v3' => 'nullable',
         'v4' => 'nullable',
         'v5' => 'nullable',
+        'v6' => 'nullable',
+        'v7' => 'nullable',
+        'v8' => 'nullable',
+        'description' => 'nullable|string',
+        'images.*' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
     ]);
 
-    $fields = ['f1', 'v1', 'v2', 'v3', 'v4', 'v5'];
+    // Booléens
+    $fields = ['f1', 'v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8'];
     $booleans = [];
 
     foreach ($fields as $field) {
-        $booleans[$field] = $request->has($field);
+        $booleans[$field] = $request->has($field); // true/false
     }
 
-    $entretien->update($booleans, [
-        $entretien->update([
-            'description' => $request->description,
+    // Mise à jour de l'entretien
+    $entretien->update(array_merge($booleans, [
+        'description' => $request->description,
+    ]));
 
-
-        ])
-
-    ]);
+    // Ajout des nouvelles images si présentes
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $img) {
+            if ($img->isValid()) {
+                $path = $img->store('entretiens', 'public');
+                EntretienImage::create([
+                    'entretien_id' => $entretien->id,
+                    'image_path' => $path,
+                ]);
+            }
+        }
+    }
 
     return redirect()->route('entretien.index', ['buildings' => $entretien->building_id])
         ->with('success', 'Entretien mis à jour !');
 }
 
-public function destroy($id)
-{
-    $entretien = Entretien::findOrFail($id);
-    $entretien->delete();
-
-    return back()->with('success', 'Entretien supprimé.');
-}
 
 
 }

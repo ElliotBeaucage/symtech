@@ -124,13 +124,36 @@
 
     <div class="section">
         <div class="section-title">Vérifications effectuées</div>
-        <ul style="list-style: none; padding-left: 0;">
-            @foreach ($labels as $key => $text)
-                <li><span class="checkbox">{{ $entretien->$key ? '✔' : '' }}</span>
-                    {{ $text }}</li>
-            @endforeach
-        </ul>
+
+        <table style="width: 100%; border: none;">
+            <tr>
+                {{-- Colonne gauche : Vérifications --}}
+                <td style="width: 55%; vertical-align: top; padding-right: 10px;">
+                    <ul style="list-style: none; padding-left: 0; margin: 0;">
+                        @foreach ($labels as $key => $text)
+                            <li><span class="checkbox">{{ $entretien->$key ? '✔' : '' }}</span>
+                                {{ $text }}</li>
+                        @endforeach
+                    </ul>
+                </td>
+
+                {{-- Colonne droite : Images --}}
+                <td style="width: 45%; vertical-align: top;">
+                    @if ($entretien->images && $entretien->images->count())
+                        @foreach ($entretien->images as $img)
+                            <div style="margin-bottom: 8px;">
+                                <img src="{{ public_path('storage/' . $img->image_path) }}"
+                                     style="width: 100%; max-height: 160px; object-fit: cover; border: 1px solid #ccc; padding: 4px;">
+                            </div>
+                        @endforeach
+                    @else
+                        <p style="color: #999; font-size: 11px;">Aucune photo liée</p>
+                    @endif
+                </td>
+            </tr>
+        </table>
     </div>
+
 
     <div class="section">
         <div class="section-title">Matériaux</div>

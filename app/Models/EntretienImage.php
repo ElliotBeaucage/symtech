@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MachineImage extends Model
+class EntretienImage extends Model
 {
-    public function entretien()
-    {
-        return $this->belongsTo(Entretien::class);
-    }
+    //
+    protected $fillable = ['entretien_id', 'image_path'];
 
+    public function entretien()
+{
+    return $this->belongsTo(Entretien::class);
+}
 }

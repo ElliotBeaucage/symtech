@@ -19,7 +19,7 @@ class Entretien extends Model
 }
 public function images()
 {
-    return $this->hasMany(MachineImage::class);
+    return $this->hasMany(EntretienImage::class);
 }
 
 }
