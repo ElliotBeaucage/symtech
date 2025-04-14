@@ -95,7 +95,7 @@
     <div class="section">
         <table class="grid-2">
             <tr>
-                <td><span class="label">Client :</span> {{ $building->client->name ?? '' }}</td>
+                <td><span class="label">Client :</span> {{ $entretien->building->client->name ?? '' }}</td>
                 <td><span class="label">Date :</span> {{ $entretien->created_at->format('d/m/Y') }}</td>
             </tr>
             <tr>
