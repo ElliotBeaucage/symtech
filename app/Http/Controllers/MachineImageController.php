@@ -16,6 +16,8 @@ class MachineImageController extends Controller
 
     public function store(Request $request, $id)
     {
+        dd($request->file('images'));
+
         $request->validate([
             'images.*' => 'image|mimes:jpeg,jpg,png,webp,heic,heif|max:20480'
         ]);
