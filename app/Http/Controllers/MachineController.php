@@ -28,6 +28,8 @@ class MachineController extends Controller
 
     public function store(Request $request)
 {
+    dd($request->file('images'));
+
     $valid = $request->validate([
         "nom" => "max:255",
         "type" => "max:255",
@@ -38,7 +40,7 @@ class MachineController extends Controller
         "filtres" => "max:255",
         "freon" => "max:255",
         "desc" => "nullable|string",
-        "image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
+        "image" => "nullable|mimes:jpeg,jpg,png,webp,heic,heif|max:20480",
         "buildings_id" => "required"
     ], [
         "buildings_id.required" => "Oups, il y a une erreur..."
