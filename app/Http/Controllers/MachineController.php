@@ -28,7 +28,7 @@ class MachineController extends Controller
 
     public function store(Request $request)
 {
-    dd($request->file('images'));
+
 
     $valid = $request->validate([
         "nom" => "max:255",

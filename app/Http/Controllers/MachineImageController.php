@@ -17,7 +17,7 @@ class MachineImageController extends Controller
     public function store(Request $request, $id)
     {
         $request->validate([
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'images.*' => 'image|mimes:jpeg,jpg,png,webp,heic,heif|max:20480'
         ]);
 
         foreach ($request->file('images') as $image) {
