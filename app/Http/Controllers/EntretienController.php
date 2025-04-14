@@ -155,6 +155,16 @@ public function update(Request $request, $id)
         ->with('success', 'Entretien mis à jour !');
 }
 
+public function destroy($id)
+{
+    $entretien = Entretien::findOrFail($id);
+    $entretien->delete();
+
+    return redirect()
+        ->route("entretien.index", ["buildings" => $entretien->building_id])
+        ->with("success", "L'entretien a été supprimé");
+}
+
 
 
 }

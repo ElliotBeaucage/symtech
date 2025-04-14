@@ -4,7 +4,7 @@ use App\Http\Controllers\buildingController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\MachineController;
-use App\Http\Controllers\ImageController;
+
 use App\Http\Controllers\SignatureController;
 use App\Http\Controllers\EntretienController;
 use App\Http\Controllers\EntretienPdfController;
