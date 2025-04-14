@@ -154,26 +154,6 @@
         </table>
     </div>
 
-
-    <div class="section">
-        <div class="section-title">Matériaux</div>
-        <table class="material-table">
-            <thead>
-                <tr>
-                    <th>Qté</th>
-                    <th>Matériaux</th>
-                    <th>Prix</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="4" style="text-align: center; color: #999;">Aucun matériau enregistré</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
     <div class="section">
         <div class="section-title">Signature du client</div>
         @if ($entretien->image)
@@ -182,16 +162,6 @@
             <p style="color: #999;">Aucune signature enregistrée</p>
         @endif
     </div>
-
-    <div class="section">
-        <table class="grid-2">
-            <tr>
-                <td><span class="label">Nom du mécanicien :</span> {{ $entretien->technicien_nom ?? '' }}</td>
-                <td><span class="label">Date complété :</span> {{ $entretien->created_at->format('d/m/Y') }}</td>
-            </tr>
-        </table>
-    </div>
-
     <div class="footer">
         <p>CHAUFFAGE | CLIMATISATION | VENTILATION | AUTOMATISATION</p>
     </div>
