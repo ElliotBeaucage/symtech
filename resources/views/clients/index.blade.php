@@ -60,8 +60,9 @@
                                     <a href="{{ route('clients.edit', ['id' => $client->id]) }}"
                                        class="text-[#003E7E] hover:underline font-medium">Modifier</a>
 
-                                    <form action="{{ route('clients.destroy') }}" method="POST">
+                                    <form action="{{ route('clients.destroy') }}" method="POST" onsubmit="return confirm('Supprimer cet entretien ?')">
                                         @csrf
+                                        @method('DELETE')
                                         <input type="hidden" name="id" value="{{ $client->id }}">
                                         <button type="submit" class="text-red-600 hover:text-red-800 font-medium">Supprimer</button>
                                     </form>
