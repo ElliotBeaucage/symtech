@@ -20,7 +20,7 @@
                 @csrf
                 <label class="block mb-2 text-sm font-medium text-gray-700">Ajouter des images</label>
                 <input type="file" name="images[]" multiple
-                       class="w-full border border-gray-300 rounded px-3 py-2 mb-3" accept="image/*" capture="environment">
+                       class="w-full border border-gray-300 rounded px-3 py-2 mb-3" accept="image/*" >
                 <button type="submit"
                         class="px-4 py-2 bg-[#003E7E] text-white rounded hover:bg-[#002b59]">
                     Ajouter
