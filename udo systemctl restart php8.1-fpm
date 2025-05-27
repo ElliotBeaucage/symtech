@@ -1,0 +1,19 @@
+[0;1;32m●[0m php8.1-fpm.service - The PHP 8.1 FastCGI Process Manager
+     Loaded: loaded (/lib/systemd/system/php8.1-fpm.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Wed 2025-04-09 20:57:58 UTC; 22s ago
+       Docs: man:php-fpm8.1(8)
+    Process: 392055 ExecStartPost=/usr/lib/php/php-fpm-socket-helper install /run/php/php-fpm.sock /etc/php/8.1/fpm/pool.d/www.conf 81 (code=exited, status=0/SUCCESS)
+   Main PID: 392052 (php-fpm8.1)
+     Status: "Processes active: 0, idle: 2, Requests: 0, slow: 0, Traffic: 0req/sec"
+      Tasks: 3 (limit: 1102)
+     Memory: 8.8M
+        CPU: 58ms
+     CGroup: /system.slice/php8.1-fpm.service
+             ├─392052 "php-fpm: master process (/etc/php/8.1/fpm/php-fpm.conf)" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─392053 "php-fpm: pool www" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             └─392054 "php-fpm: pool www" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+
+Apr 09 20:57:58 ubuntu-s-1vcpu-1gb-tor1-01 systemd[1]: php8.1-fpm.service: Deactivated successfully.
+Apr 09 20:57:58 ubuntu-s-1vcpu-1gb-tor1-01 systemd[1]: Stopped The PHP 8.1 FastCGI Process Manager.
+Apr 09 20:57:58 ubuntu-s-1vcpu-1gb-tor1-01 systemd[1]: Starting The PHP 8.1 FastCGI Process Manager...
+Apr 09 20:57:58 ubuntu-s-1vcpu-1gb-tor1-01 systemd[1]: Started The PHP 8.1 FastCGI Process Manager.
