@@ -13,7 +13,7 @@
 
     <!-- PWA Meta -->
     <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" href="/img/icons/icon-180x180.png">
+    <link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png">
     <meta name="theme-color" content="#1F2937">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
