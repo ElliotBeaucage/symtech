@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('entretiens', function (Blueprint $table) {
             $table->id();
+
             $table->boolean('f1')->default(false);
             $table->boolean('v1')->default(false);
             $table->boolean('v2')->default(false);

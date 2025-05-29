@@ -1,5 +1,5 @@
 <x-layout :user="auth()->user()">
-    <main class="min-h-screen bg-gray-100 py-10">
+    <main class=" bg-gray-100 py-10">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex flex-col lg:flex-row lg:space-x-8">
 

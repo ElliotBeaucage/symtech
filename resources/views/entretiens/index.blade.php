@@ -1,5 +1,5 @@
 <x-layout :user="auth()->user()">
-    <main class="min-h-screen bg-gray-100 py-10">
+    <main class="bg-gray-100 py-10">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex flex-col lg:flex-row lg:space-x-8">
 
@@ -33,6 +33,7 @@
                     @endif
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
                         @php
                             $labels = [
                                 'f1' => 'Fourniture et remplacement des filtres',
@@ -48,7 +49,9 @@
                         @endphp
 
                         @forelse ($entretiens as $e)
+
                             <div class="bg-white p-6 rounded-lg shadow flex flex-col justify-between h-full">
+                                 <p>Créé par : {{ $e->user->username ?? 'Inconnu' }}</p>
                                 <p class="text-sm text-gray-500 mb-3">
                                     Date : {{ $e->created_at->timezone('America/Toronto')->format('d/m/Y à H:i') }}
                                 </p>

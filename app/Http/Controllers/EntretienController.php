@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\Building;
@@ -26,18 +27,19 @@ class EntretienController extends Controller
             "entretiens" => $entretiens,
             "images" => $images,
             "buildings" => $building,
+
         ]);
     }
     public function create($buildings)
     {
+
         $building = Building::findOrFail($buildings)->id;
+
+
 
         return view("entretiens.create", [
 
             "buildings" => $building,
-
-
-
         ]);
     }
 
@@ -76,6 +78,7 @@ class EntretienController extends Controller
 
         // Création de l'entretien
         $entretien = Entretien::create(array_merge($booleans, [
+            'user_id' => Auth::id(),
             'building_id' => $request->building_id,
             'description' => $request->description,
             'image' => "signatures/{$imageName}",

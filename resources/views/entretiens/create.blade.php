@@ -9,6 +9,7 @@
                 @csrf
                 <input type="hidden" name="building_id" id="building_id" value="{{ $buildings }}">
 
+
                 @php
                     $labels = [
                         'f1' => 'Fourniture et remplacement des filtres',

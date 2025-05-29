@@ -30,17 +30,13 @@
     </script>
 </head>
 
-<header>
+<header class="bg-white-100">
     <a href="{{route("clients.index")}}">
         <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="200px" height="200px">
     </a>
-
-
-
-
-
 </header>
-<body>
+
+<body class=" bg-gray-100">
     {{{$slot}}}
 
 
