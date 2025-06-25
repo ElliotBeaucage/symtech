@@ -42,6 +42,7 @@
 <style>
   html, body {
     overscroll-behavior-y: contain;
+     overscroll-behavior: none;
     touch-action: manipulation;
   }
   button, a, input, textarea, label {
