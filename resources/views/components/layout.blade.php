@@ -1,3 +1,6 @@
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
@@ -33,3 +36,17 @@
       }
     </script>
 </head>
+
+
+<header class="bg-white-100">
+    <a href="{{route("clients.index")}}">
+        <img src="{{ asset('img/symtec_logo.svg') }}" alt="" width="200px" height="200px">
+    </a>
+</header>
+
+<body class=" bg-gray-100">
+    {{{$slot}}}
+
+
+</body>
+</html>
