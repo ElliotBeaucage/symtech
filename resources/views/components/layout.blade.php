@@ -40,6 +40,10 @@
     </script>
 </head>
 <style>
+  html, body {
+    overscroll-behavior-y: contain;
+    touch-action: manipulation;
+  }
   button, a, input, textarea, label {
     touch-action: manipulation;
   }
