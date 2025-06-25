@@ -26,7 +26,7 @@ Route::get("/client-edit/{id}", [ClientController::class, "edit"])->name("client
 
 Route::post("/client-update", [ClientController::class, "update"])->name("clients.update")->middleware("Auth");
 
-Route::post("/client-destroy", [ClientController::class, "destroy"])->name("clients.destroy")->middleware("Auth");
+Route::delete("/client-destroy", [ClientController::class, "destroy"])->name("clients.destroy")->middleware("Auth");
 
 
 Route::get("/{client}/buildings", [buildingController::class, "index"])->name("buildings.index")->middleware("Auth");
