@@ -41,11 +41,13 @@
 </head>
 <style>
   html, body {
-    overscroll-behavior-y: contain;
-     overscroll-behavior: none;
     touch-action: manipulation;
+    overscroll-behavior: none;
+    -webkit-user-select: none; /* bloque aussi le double-tap sur iOS */
+    -webkit-tap-highlight-color: transparent;
   }
-  button, a, input, textarea, label {
+
+  button, a, input, textarea {
     touch-action: manipulation;
   }
 </style>
