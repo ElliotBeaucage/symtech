@@ -10,6 +10,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.6/dist/signature_pad.umd.min.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
@@ -37,6 +39,11 @@
       }
     </script>
 </head>
+<style>
+  button, a, input, textarea, label {
+    touch-action: manipulation;
+  }
+</style>
 
 
 <header class="bg-white-100">
