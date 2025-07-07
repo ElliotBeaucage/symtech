@@ -32,6 +32,7 @@ class MachineController extends Controller
 
     $valid = $request->validate([
         "nom" => "max:255",
+        'bureau' => 'nullable|string|max:255',
         "type" => "max:255",
         "marque" => "max:255",
         "modele" => "max:255",
@@ -50,6 +51,7 @@ class MachineController extends Controller
 
     $machine = new Machine();
     $machine->nom = $valid["nom"];
+    $machine->bureau = $valid['bureau'] ?? null;
     $machine->type = $valid["type"];
     $machine->marque = $valid["marque"];
     $machine->modele = $valid["modele"];
@@ -82,51 +84,49 @@ class MachineController extends Controller
             "machine" => Machine::findOrFail($id),
         ]);
     }
-    public function update(Request $request)
-    {
+ public function update(Request $request)
+{
+    $valid = $request->validate([
+        "id" => "required",
+        "nom" => "max:255",
+        "bureau" => "nullable|string|max:255",
+        "type" => "max:255",
+        "marque" => "max:255",
+        "modele" => "max:255",
+        "serie" => "max:255",
+        "courroie" => "max:255",
+        "filtres" => "max:255",
+        "freon" => "max:255",
+        "desc" => "nullable|string",
+    ], [
+        "id.required" => "Un problème est survenu",
+        "type.max" => "Il y a trop de caractères",
+        "modele.max" => "Il y a trop de caractères",
+        "serie.max" => "Il y a trop de caractères",
+        "courroie.max" => "Il y a trop de caractères",
+        "filtres.max" => "Il y a trop de caractères",
+        "freon.max" => "Il y a trop de caractères",
+    ]);
 
-        $valid = $request->validate([
-            "id" => "required",
-            "nom" => "max:255",
-            "type" => "max:255",
-            "marque" => "max:255",
-            "modele" => "max:255",
-            "serie" => "max:255",
-            "courroie" => "max:255",
-            "filtres" => "max:255",
-            "freon" => "max:255",
-            "desc" => "",
+    $machine = Machine::findOrFail($valid["id"]);
+    $machine->nom = $valid["nom"];
+    $machine->bureau = $valid["bureau"] ?? null;
+    $machine->type = $valid["type"];
+    $machine->marque = $valid["marque"];
+    $machine->modele = $valid["modele"];
+    $machine->serie = $valid["serie"];
+    $machine->courroie = $valid["courroie"];
+    $machine->filtres = $valid["filtres"];
+    $machine->freon = $valid["freon"];
+    $machine->description = $valid["desc"];
 
-        ], [
-            "id.required" => "Un problème est survenu",
-            "type.max" => "Il y a tros de caractère",
-            "modele.max" => "Il y a tros de caractère",
-            "serie.max" => "Il y a tros de caractère",
-            "courroie.max" => "Il y a tros de caractère",
-            "filttres.max" => "Il y a tros de caractère",
-            "freon.max" => "Il y a tros de caractère",
-        ]);
+    $machine->save();
 
+    return redirect()
+        ->route("machines.index", ["buildings" => $machine->building_id])
+        ->with('success', "La machine a été modifiée");
+}
 
-        $machine = Machine::findOrFail($valid["id"]);
-        $machine->nom = $valid["nom"];
-        $machine->type = $valid["type"];
-        $machine->marque = $valid["marque"];
-        $machine->modele = $valid["modele"];
-        $machine->serie = $valid["serie"];
-        $machine->courroie = $valid["courroie"];
-        $machine->filtres = $valid["filtres"];
-        $machine->freon = $valid["freon"];
-        $machine->description = $valid["desc"];
-
-
-
-        $machine->save();
-
-        return redirect()
-            ->route("machines.index", ["buildings" => $machine->building_id])
-            ->with('success', "La machine a été modifiée");
-    }
 
     public function destroy(Request $request)
     {

@@ -15,6 +15,9 @@
                         <input type="text" id="nom" name="nom" placeholder="Nom de la machine"
                             class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]">
 
+                        <input type="text" id="bureau" name="bureau" placeholder="Numéro de bureau"
+                            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]">
+
                         <input type="text" id="type" name="type" placeholder="Type/Genre"
                             class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003E7E]">
 
@@ -77,6 +80,7 @@
                                 class="bg-white p-6 rounded-lg shadow hover:shadow-md transition flex flex-col justify-between h-full">
                                 <div class="space-y-2 text-sm text-gray-800">
                                     <p><span class="font-semibold">Nom:</span> {{ $machine->nom }}</p>
+                                    <p><span class="font-semibold">Bureau:</span> {{ $machine->bureau }}</p>
                                     <p><span class="font-semibold">Type/Genre:</span> {{ $machine->type }}</p>
                                     <p><span class="font-semibold">Marque:</span> {{ $machine->marque }}</p>
                                     <p><span class="font-semibold">Modèle:</span> {{ $machine->modele }}</p>
@@ -97,7 +101,7 @@
                                     <a href="{{ route('machines.images', $machine->id) }}"
                                         class="text-[#003E7E] hover:underline text-sm font-medium">
                                         Voir les images
-                                     </a>
+                                    </a>
 
                                     <form action="{{ route('machines.destroy') }}" method="POST"
                                         onsubmit="return confirm('Supprimer cette machine ?')">
